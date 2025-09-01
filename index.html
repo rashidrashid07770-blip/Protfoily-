@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="ta">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>R. Mohammed Rashid — Portfolio</title>
+  <meta name="description" content="R. Mohammed Rashid — B.Sc. Computer Science | Web Developer" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto+Slab:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg-dark:#071029;
+      --muted:#9fb0c9;
+      --accent-1:#ff6b6b;
+      --accent-2:#ff9f43;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Poppins',sans-serif;
+      background: linear-gradient(180deg,#061226 0%, #071a3a 60%);
+      color:#e9f1fb;
+      -webkit-font-smoothing:antialiased;
+      padding:28px;
+    }
+    .wrap{max-width:1200px;margin:0 auto}
+
+    header{
+      display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:12px;
+      background: rgba(255,255,255,0.02);backdrop-filter:blur(6px);
+      margin-bottom:18px;
+    }
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+      background:linear-gradient(135deg,#7c3aed,#06b6d4);font-weight:800;color:#fff;font-size:20px}
+    .who .name{font-weight:700}
+    .who .meta{font-size:12px;color:var(--muted)}
+
+    nav ul{display:flex;gap:12px;list-style:none}
+    nav a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:8px;font-weight:600}
+    nav a:hover{color:#fff;background:rgba(255,255,255,0.02)}
+
+    /* HERO like reference: left text, right large circular portrait with ring */
+    .hero{
+      display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:36px;border-radius:16px;box-shadow:0 10px 40px rgba(2,6,23,0.6);
+    }
+    @media(max-width:900px){ .hero{grid-template-columns:1fr;text-align:center;padding:24px} .hero-right{order:2} .hero-left{order:1} }
+
+    /* Left text */
+    .hero-left .eyebrow{color:var(--muted);font-weight:600;margin-bottom:8px}
+    .hero-left h1{font-family:'Roboto Slab',serif;font-size:42px;margin-bottom:6px;line-height:1.05}
+    .hero-left .big{font-size:44px;color:transparent;background:linear-gradient(90deg,var(--accent-1),var(--accent-2));-webkit-background-clip:text}
+    .hero-left p.lead{color:var(--muted);margin:12px 0 18px;font-size:16px;max-width:680px}
+
+    .ctas{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{padding:12px 16px;border-radius:12px;border:0;cursor:pointer;font-weight:700}
+    .btn-primary{background:linear-gradient(90deg,var(--accent-1),var(--accent-2));color:#071026}
+    .btn-outline{background:transparent;border:1px solid rgba(255,255,255,0.08);color:var(--muted)}
+
+    /* Right portrait with decorative ring */
+    .hero-right{display:flex;align-items:center;justify-content:center;position:relative}
+    .portrait-wrap{position:relative;width:340px;height:340px;display:flex;align-items:center;justify-content:center}
+    /* decorative gradient ring */
+    .ring{
+      position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+      width:380px;height:380px;border-radius:50%;
+      background:conic-gradient(from 160deg, rgba(255,155,92,0.22), rgba(124,58,237,0.18), rgba(6,182,212,0.18));
+      filter:blur(14px);opacity:0.9;z-index:1;
+    }
+    .portrait{
+      position:relative;z-index:2;width:300px;height:300px;border-radius:50%;
+      overflow:hidden;border:8px solid rgba(7,18,36,0.85);box-shadow:0 30px 70px rgba(2,6,23,0.9);
+      background:linear-gradient(135deg,#e6f0fb08,#ffffff08);
+    }
+    .portrait img{width:100%;height:100%;object-fit:cover;display:block}
+
+    /* Main layout under hero */
+    .main-grid{display:grid;grid-template-columns:1fr 340px;gap:20px;margin-top:20px}
+    @media(max-width:900px){ .main-grid{grid-template-columns:1fr} }
+
+    .card{background:rgba(255,255,255,0.02);padding:18px;border-radius:12px}
+    h2{font-family:'Roboto Slab',serif;margin-bottom:10px}
+
+    /* Projects colored cards (no photos) */
+    .projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    @media(max-width:700px){ .projects-grid{grid-template-columns:1fr} }
+    .proj{padding:14px;border-radius:12px;color:#071026;font-weight:700;min-height:110px;display:flex;flex-direction:column;justify-content:center}
+    .proj p{font-weight:500;margin-top:6px;font-size:14px;color:#092035}
+    .proj.p1{background:linear-gradient(135deg,#FF8A65,#FFB26B)}
+    .proj.p2{background:linear-gradient(135deg,#7CE7B7,#3B82F6)}
+    .proj.p3{background:linear-gradient(135deg,#9B8CF5,#7C83FD)}
+    .proj.p4{background:linear-gradient(135deg,#FDE68A,#F59E0B)}
+    .proj.p5{background:linear-gradient(135deg,#60A5FA,#06B6D4)}
+    .proj.p6{background:linear-gradient(135deg,#F472B6,#F97316)}
+
+    /* details list */
+    .details li{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px dashed rgba(255,255,255,0.03);color:var(--muted)}
+    .details li strong{color:#fff}
+
+    footer{text-align:center;color:var(--muted);margin-top:24px;padding:16px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- header -->
+    <header>
+      <div class="brand">
+        <div class="logo">R</div>
+        <div class="who">
+          <div class="name">R. Mohammed Rashid</div>
+          <div class="meta">B.Sc. Computer Science • Mazharul Uloom College, Ambur</div>
+        </div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a id="downloadTop" href="#" style="background:linear-gradient(90deg,#ff6b6b,#ff9f43);padding:8px 12px;border-radius:10px;color:#071026;text-decoration:none;font-weight:700">Resume</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="hero-left">
+        <div class="eyebrow">Hello.</div>
+        <h1 id="heroTitle">I'm <span style="color:#fff;font-weight:800">R. Mohammed Rashid</span></h1>
+        <div class="big">Web Developer</div>
+        <p class="lead">Basic Web Developer &amp; Computer Science student — building responsive websites and small JavaScript apps. Looking for internships and small freelance work.</p>
+
+        <div class="ctas">
+          <button class="btn btn-primary" id="contactBtn">Get a project</button>
+          <a class="btn btn-outline" href="#" id="resumeLink">My resume</a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="portrait-wrap">
+          <div class="ring" aria-hidden></div>
+          <div class="portrait" role="img" aria-label="Profile picture of R. Mohammed Rashid">
+            <!-- DIRECT IMAGE URL from ImgBB (fetched) -->
+            <img src="https://i.ibb.co/xSjmx25T/IMG-20250830-142637.jpg" alt="Rashid profile picture" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- main content -->
+    <div class="main-grid">
+      <main>
+        <section class="card" id="about">
+          <h2>About Me</h2>
+          <p style="color:var(--muted)">I am a Computer Science student passionate about front-end development. I enjoy making clean, responsive websites and learning new web technologies.</p>
+        </section>
+
+        <section class="card" id="education" style="margin-top:14px">
+          <h2>Education</h2>
+          <ul style="color:var(--muted);line-height:1.8">
+            <li>Mazharul Uloom College — B.Sc. Computer Science (Present)</li>
+            <li>Govt Boys Higher Secondary School — 12th (Computer Science) — Completed</li>
+          </ul>
+        </section>
+
+        <section class="card" id="projects" style="margin-top:14px">
+          <h2>Projects</h2>
+          <p style="color:var(--muted);margin-bottom:12px">Each project card has its own color/gradient — no photos used inside project cards.</p>
+          <div class="projects-grid">
+            <div class="proj p1">
+              <div>Portfolio Website</div>
+              <p>Responsive single-file portfolio with a clean UI.</p>
+            </div>
+            <div class="proj p2">
+              <div>Starter Template</div>
+              <p>Starter layout with components to begin quickly.</p>
+            </div>
+            <div class="proj p3">
+              <div>To-do App</div>
+              <p>Vanilla JS app using localStorage.</p>
+            </div>
+            <div class="proj p4">
+              <div>Landing Page</div>
+              <p>Mobile-first landing with CTA emphasis.</p>
+            </div>
+            <div class="proj p5">
+              <div>Mini Game</div>
+              <p>Small JS canvas game for practice.</p>
+            </div>
+            <div class="proj p6">
+              <div>Learning Notes</div>
+              <p>Code snippets and small algorithm notes.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="card" id="contact" style="margin-top:14px">
+          <h2>Contact</h2>
+          <p style="color:var(--muted)">Email: <a href="mailto:rashidrashid07770@gmail.com" style="color:#fff">rashidrashid07770@gmail.com</a></p>
+          <p style="color:var(--muted)">Phone: <a href="tel:+918754203777" style="color:#fff">8754203777</a></p>
+        </section>
+      </main>
+
+      <aside>
+        <div class="card">
+          <h2>Personal Details</h2>
+          <ul style="list-style:none;padding:0;margin-top:8px;color:var(--muted)">
+            <li style="padding:8px 0"><strong>Name:</strong> <span style="float:right;color:#fff">R. Mohammed Rashid</span></li>
+            <li style="padding:8px 0"><strong>DOB:</strong> <span style="float:right;color:#fff">30/01/2007</span></li>
+            <li style="padding:8px 0"><strong>Address:</strong> <span style="float:right;color:#fff">24 Jamethar 1st Street, Anaikattu</span></li>
+            <li style="padding:8px 0"><strong>Skills:</strong> <span style="float:right;color:#fff">HTML 90%, CSS 87%, JS 60%</span></li>
+          </ul>
+        </div>
+
+        <div class="card" style="margin-top:14px">
+          <h2>Certificates</h2>
+          <ul style="color:var(--muted);line-height:1.6">
+            <li>HTML & CSS — FreeCodeCamp</li>
+            <li>JavaScript — Coursera</li>
+            <li>Responsive Web Design — Google Developer Program</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      © 2025 R. Mohammed Rashid • Mazharul Uloom College, Ambur
+    </footer>
+  </div>
+
+  <script>
+    // quick interactions
+    document.getElementById('contactBtn').addEventListener('click', ()=> {
+      window.location.href = '#contact';
+    });
+
+    // Resume download (simple txt)
+    function downloadTextFile(filename, text){
+      const blob = new Blob([text], {type:'text/plain'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href = url; a.download = filename; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+    }
+    document.getElementById('resumeLink').addEventListener('click', (e)=>{
+      e.preventDefault();
+      const text = `R. Mohammed Rashid
+B.Sc. Computer Science (Present)
+Phone: 8754203777
+Email: rashidrashid07770@gmail.com
+Skills: HTML 90%, CSS 87%, JavaScript 60%
+Education: Mazharul Uloom College; Govt Boys Higher Secondary School
+`;
+      downloadTextFile('R_Mohammed_Rashid_Resume.txt', text);
+    });
+    document.getElementById('downloadTop').addEventListener('click', (e)=>{
+      e.preventDefault();
+      const text = `R. Mohammed Rashid - Resume
+Phone: 8754203777
+Email: rashidrashid07770@gmail.com
+`;
+      downloadTextFile('R_Mohammed_Rashid_Resume.txt', text);
+    });
+  </script>
+</body>
+  </html>
